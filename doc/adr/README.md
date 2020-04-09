@@ -6,3 +6,4 @@
 -   [4. jb-004-oas3-validation-endpoints](ccc-jb-004-oas3-validation-endpoints.md)
 -   [5. jb-005-utilisation-de-paramètres-distincts-pour-la-pagination](ccc-jb-005-utilisation-de-paramètres-distincts-pour-la-pagination.md)
 -   [6. jb-006-remplacement-de-l'en-tête-content-range-par-x-total-count-et-link](ccc-jb-006-remplacement-de-l'en-tête-content-range-par-x-total-count-et-link.md)
+-   [7. jb-007-securisation-de-l-administration](ccc-jb-007-securisation-de-l-administration.md)
