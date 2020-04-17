@@ -140,10 +140,7 @@ describe('JobPostings API Endpoints', () => {
             expect.hasAssertions();
             await frisby
                 .get(
-                    `http://api:3001/api/job-postings?sort=${JSON.stringify([
-                        'hiringOrganizationPostalCode',
-                        'ASC',
-                    ])}`
+                    `http://api:3001/api/job-postings?sortBy=${'hiringOrganizationPostalCode'}&orderBy=${'ASC'}`
                 )
                 .expect('status', 200)
                 .expect(
