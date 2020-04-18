@@ -83,56 +83,64 @@ describe('Sanitizers', () => {
     });
 
     describe('sortSanitizer', () => {
-        it("should return the first sortable field ASC if sortBy is not set", () => {
-            const defaultSortableFields = ["foo", "bar"];
+        it('should return the first sortable field ASC if sortBy is not set', () => {
+            const defaultSortableFields = ['foo', 'bar'];
             expect(
-                (
-                    { sortBy: undefined, orderBy: "DESC" },
-                        defaultSortableFields
+                sortSanitizer(
+                    { sortBy: undefined, orderBy: 'DESC' },
+                    defaultSortableFields
                 )
-            ).toEqual(["foo", "ASC"]);
+            ).toEqual(['foo', 'ASC']);
         });
 
-        it("should return the first sortable field ASC if orderBy is not set", () => {
-            const defaultSortableFields = ["foo", "bar"];
+        it('should return the first sortable field ASC if orderBy is not set', () => {
+            const defaultSortableFields = ['foo', 'bar'];
             expect(
-                (
-                    { sortBy: "bar", orderBy: undefined },
-                        defaultSortableFields
+                sortSanitizer(
+                    { sortBy: 'bar', orderBy: undefined },
+                    defaultSortableFields
                 )
-            ).toEqual(["foo", "ASC"]);
+            ).toEqual(['foo', 'ASC']);
         });
 
-        it("should return the first sortable field ASC if query sort is not a sortable field", () => {
-            const defaultSortableFields = ["foo", "bar"];
+        it('should return the first sortable field ASC if query sort is not a sortable field', () => {
+            const defaultSortableFields = ['foo', 'bar'];
             expect(
-                ({sortBy: "notSortable", orderBy: "DESC"}, defaultSortableFields)
-            ).toEqual(["foo", "ASC"]);
-        });
-
-        it("should replace the sort order with ASC if the query param sort order is not valid", () => {
-            const defaultSortableFields = ["foo", "bar"];
-            expect(
-                ({sortBy: "bar", orderBy: "horizontal"}, defaultSortableFields)
-            ).toEqual(["bar", "ASC"]);
-        });
-
-        it("should remove the supernumerary parameters of the sorting object", () => {
-            const defaultSortableFields = ["foo", "bar"];
-            expect(
-                (
-                    { sortBy: "bar", orderBy: "DESC", nonsense : "this", wathever : "is"},
-                        defaultSortableFields
+                sortSanitizer(
+                    { sortBy: 'notSortable', orderBy: 'DESC' },
+                    defaultSortableFields
                 )
-            ).toEqual(["bar", "DESC"]);
+            ).toEqual(['foo', 'ASC']);
         });
 
-        it("should return a well formated sort from query parameter", () => {
-            const defaultSortableFields = ["foo", "bar"];
-            expect(({sortBy: "bar", orderBy: "DESC"}, defaultSortableFields)).toEqual([
-                "bar",
-                "DESC",
-            ]);
+        it('should replace the sort order with ASC if the query param sort order is not valid', () => {
+            const defaultSortableFields = ['foo', 'bar'];
+            expect(
+                sortSanitizer(
+                    { sortBy: 'bar', orderBy: 'horizontal' },
+                    defaultSortableFields
+                )
+            ).toEqual(['bar', 'ASC']);
+        });
+
+        it('should remove the supernumerary parameters of the sort object', () => {
+            const defaultSortableFields = ['foo', 'bar'];
+            expect(
+                sortSanitizer(
+                    { sortBy: 'bar', orderBy: 'DESC', nonsense: 'this' },
+                    defaultSortableFields
+                )
+            ).toEqual(['bar', 'DESC']);
+        });
+
+        it('should return a well formated sort from query parameter', () => {
+            const defaultSortableFields = ['foo', 'bar'];
+            expect(
+                sortSanitizer(
+                    { sortBy: 'bar', orderBy: 'DESC' },
+                    defaultSortableFields
+                )
+            ).toEqual(['bar', 'DESC']);
         });
     });
 

@@ -36,9 +36,9 @@ const filtersSanitizer = (filters, filterableFields) => {
  */
 
 
-const sortSanitizer = (sort, sortableFields) => {
+const sortSanitizer =  ({ sortBy, orderBy }, sortableFields) => {
 
-    if (orderBy == undefined || !sortableFields.includes(sortBy)) {
+    if (orderBy === undefined || !sortableFields.includes(sortBy)) {
         return [sortableFields[0], "ASC"];
     }
 
