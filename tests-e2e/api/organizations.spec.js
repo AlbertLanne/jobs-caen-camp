@@ -116,14 +116,43 @@ describe('Organizations API Endpoints', () => {
                 });
         });
 
-        it('devrait accepter un parametre de requête "sort" pour le tri', async () => {
+
+        // it('devrait accepter un parametre de requête "sort" pour le tri', async () => {
+        //     expect.hasAssertions();
+        //     await frisby
+        //         .get(
+        //             `http://api:3001/api/organizations?sort=${JSON.stringify([
+        //                 'name',
+        //                 'ASC',
+        //             ])}`
+        //         )
+        //         .expect('status', 200)
+        //         .then((resp) => {
+        //             expect(resp.json).toHaveLength(3);
+        //             expect(resp.json[0].name).toStrictEqual('Flexcity');
+        //             expect(resp.json[1].name).toStrictEqual('Limengo');
+        //             expect(resp.json[2].name).toStrictEqual('Qwarry');
+        //         });        //
+
+
+    //     `http://api:3001/api/job-postings?filters=${JSON.stringify({
+    //         hiringOrganizationPostalCode: 14,
+    //     })}&${querystring.stringify({
+    //         sortBy: 'title',
+    //         orderBy: 'DESC',
+    //     })}`
+    // )
+
+
+
+        it('devrait accepter deux parametres de tri { sortBy : name, orderBy : ASC }', async () => {
             expect.hasAssertions();
             await frisby
                 .get(
-                    `http://api:3001/api/organizations?sort=${JSON.stringify([
-                        'name',
-                        'ASC',
-                    ])}`
+                    `http://api:3001/api/organizations?${querystring.stringify({
+                        sortBy: 'name',
+                        orderBy: 'ASC',
+                    })}`
                 )
                 .expect('status', 200)
                 .then((resp) => {
@@ -134,10 +163,10 @@ describe('Organizations API Endpoints', () => {
                 });
             await frisby
                 .get(
-                    `http://api:3001/api/organizations?sort=${JSON.stringify([
-                        'name',
-                        'DESC',
-                    ])}`
+                    `http://api:3001/api/organizations?${querystring.stringify({
+                        sortBy : 'name',
+                        orderBy : 'DESC',
+                    })}`
                 )
                 .then((resp) => {
                     expect(resp.json).toHaveLength(3);
